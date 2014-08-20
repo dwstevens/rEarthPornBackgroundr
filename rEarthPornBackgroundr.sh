@@ -11,7 +11,7 @@
 # 0 6 * * * /path/to/rEarthPornBackgrounder.sh > /dev/null 2>&1 
 
 # Path to desktop image directory as specified in Desktop & Screensaver system preferences
-desktopImgDirectory="/Users/dwstevens1/Pictures/Desktop Pictures"
+desktopImgDirectory="/path/to/desktop/images/folder"
 
 # lots of hard coded stuff here; gets a list of image URLS in a not so configurable way
 # Get's latest 100 hot posts from r/EarthPorn, r/CityPorn, r/SpacePorn, and r/WaterPorn
