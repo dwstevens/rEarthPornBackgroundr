@@ -10,8 +10,17 @@
 # To run it at 6 am every day, and send no output emails
 # 0 6 * * * /path/to/rEarthPornBackgrounder.sh > /dev/null 2>&1 
 
+# Configure some options
+# TODO these could probably be command line switches
+
+
+# Specify minimum image width and aspect ratio settings. 16:9 is 1.78 Aspect Ratio, the higher the wider the image will be versus the height.
+minimumImageWidth=1500
+minimumAspectRatio=1.3
+
+
 # Path to desktop image directory as specified in Desktop & Screensaver system preferences
-desktopImgDirectory="/path/to/desktop/images/folder"
+desktopImgDirectory="/path/to/desktop/image/directory"
 
 # lots of hard coded stuff here; gets a list of image URLS in a not so configurable way
 # Get's latest 100 hot posts from r/EarthPorn, r/CityPorn, r/SpacePorn, and r/WaterPorn
@@ -47,13 +56,13 @@ do
     
     # delete image if it's below our standards...hard coded
     # if the width of the image is less than or equal to 1900px delete it
-    if [ $imageWidth -le 1900 ]
+    if [ $imageWidth -le $minimumImageWidth ]
     then
         echo $fileName "is junk....deletion immiment. Too small."
         rm "${fileName}"
     
     # If the aspect ratio is less than 1.3 (1.78 is 16:9), delete it    
-    elif (( $(bc <<< "$aspectRatio < 1.3") == 1 ))
+    elif (( $(bc <<< "$aspectRatio < $minimumAspectRatio") == 1 ))
     then 
         echo $fileName "is junk...deletion immiment. Bad Aspect Ratio."
         rm "${fileName}"
